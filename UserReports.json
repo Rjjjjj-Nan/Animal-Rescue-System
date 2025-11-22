@@ -1,0 +1,68 @@
+[
+  {
+    "reportId": 101,
+    "date": "2025-11-01",
+    "time": "17:42:42",
+    "username": "Johnraysuuu",
+    "type": "dont know",
+    "description": "please get this animal here",
+    "location": "bugtong",
+    "status": "Archived",
+    "priority": "Low"
+  },
+  {
+    "reportId": 102,
+    "date": "2025-11-01",
+    "time": "17:43:01",
+    "username": "Johnraysuuu",
+    "type": "dont know",
+    "description": "please get this animal here",
+    "location": "bugtong",
+    "status": "Resolved",
+    "priority": "Medium"
+  },
+  {
+    "reportId": 103,
+    "date": "2025-11-01",
+    "time": "17:43:19",
+    "username": "Johnraysuuu",
+    "type": "dont know",
+    "description": "please get this animal here",
+    "location": "bugtong",
+    "status": "Archived",
+    "priority": "Medium"
+  },
+  {
+    "reportId": 104,
+    "date": "2025-11-07",
+    "time": "20:38:37",
+    "username": "alix",
+    "type": "Abandonment",
+    "description": "I found an abandoned dog, please check",
+    "location": "Namuco",
+    "status": "Resolved",
+    "priority": "Urgent"
+  },
+  {
+    "reportId": 105,
+    "date": "2025-11-14",
+    "time": "19:17:39",
+    "username": "john",
+    "type": "hazardous",
+    "description": "bangaw na dog",
+    "location": "bugtong",
+    "status": "Resolved",
+    "priority": "Unassigned yet"
+  },
+  {
+    "reportId": 106,
+    "date": "2025-11-15",
+    "time": "17:15:58",
+    "username": "john",
+    "type": "ewan",
+    "description": "try",
+    "location": "bugtong",
+    "status": "Resolved",
+    "priority": "Unassigned yet"
+  }
+]

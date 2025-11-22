@@ -1,0 +1,79 @@
+[
+  {
+    "date": "2025-11-10 18:27:38",
+    "applicationId": 100,
+    "username": "john",
+    "animalId": 103,
+    "status": "Approved"
+  },
+  {
+    "date": "2025-11-14 18:23:59",
+    "applicationId": 101,
+    "username": "john",
+    "animalId": 2,
+    "status": "Approved"
+  },
+  {
+    "date": "2025-11-14 18:29:46",
+    "applicationId": 101,
+    "username": "john",
+    "animalId": 2,
+    "status": "Approved"
+  },
+  {
+    "date": "2025-11-14 18:59:16",
+    "applicationId": 102,
+    "username": "john",
+    "animalId": 2,
+    "status": "Pending"
+  },
+  {
+    "date": "2025-11-15 16:22:28",
+    "applicationId": 103,
+    "username": "john",
+    "animalId": 104,
+    "status": "Pending"
+  },
+  {
+    "date": "2025-11-15 16:23:59",
+    "applicationId": 104,
+    "username": "john",
+    "animalId": 104,
+    "status": "Approved"
+  },
+  {
+    "date": "2025-11-15 16:25:19",
+    "applicationId": 105,
+    "username": "john",
+    "animalId": 104,
+    "status": "Pending"
+  },
+  {
+    "date": "2025-11-15 16:26:42",
+    "applicationId": 106,
+    "username": "john",
+    "animalId": 104,
+    "status": "Pending"
+  },
+  {
+    "date": "2025-11-22 09:52:43",
+    "applicationId": 107,
+    "username": "deb",
+    "animalId": 105,
+    "status": "Pending"
+  },
+  {
+    "date": "2025-11-22 09:53:16",
+    "applicationId": 108,
+    "username": "deb",
+    "animalId": 105,
+    "status": "Pending"
+  },
+  {
+    "date": "2025-11-22 10:55:00",
+    "applicationId": 109,
+    "username": "john",
+    "animalId": 106,
+    "status": "Pending"
+  }
+]

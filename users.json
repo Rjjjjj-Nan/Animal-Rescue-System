@@ -1,0 +1,34 @@
+[
+  {
+    "username": "john",
+    "password": "ewan",
+    "fullName": "John Ray Mitra",
+    "age": 19,
+    "address": "Lipa City",
+    "contactNo": "09086533508"
+  },
+  {
+    "username": "alix",
+    "password": "alix",
+    "fullName": "Alexa Ruben",
+    "age": 20,
+    "address": "Rosario, Batangas",
+    "contactNo": "09129623840"
+  },
+  {
+    "username": "dave",
+    "password": "12345",
+    "fullName": "dave javier",
+    "age": 19,
+    "address": "lipa city",
+    "contactNo": "09958940255"
+  },
+  {
+    "username": "deb",
+    "password": "12345",
+    "fullName": "Dave Javier",
+    "age": 19,
+    "address": "Lipa City",
+    "contactNo": "09958940255"
+  }
+]

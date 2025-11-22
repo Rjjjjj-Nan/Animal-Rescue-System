@@ -1,0 +1,40 @@
+[
+  {
+    "firstName": "John",
+    "lastName": "Mitra",
+    "age": 19,
+    "address": "bugtong",
+    "contact": "09086533508",
+    "skills": [
+      "sleep"
+    ],
+    "date": "2025-11-01",
+    "status": "Hired!"
+  },
+  {
+    "firstName": "John Ray",
+    "lastName": "Mitra",
+    "age": 19,
+    "address": "Bugtong, Lipa City",
+    "contact": "09086533508",
+    "skills": [
+      "sleep",
+      "eating"
+    ],
+    "date": "2025-11-15",
+    "status": "For Evaluation"
+  },
+  {
+    "firstName": "rj",
+    "lastName": "mitra",
+    "age": 19,
+    "address": "lipa city",
+    "contact": "09086533508",
+    "skills": [
+      "sleep",
+      "eat"
+    ],
+    "date": "2025-11-22",
+    "status": "Hired!"
+  }
+]

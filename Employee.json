@@ -1,0 +1,53 @@
+[
+  {
+    "applicantId": 1435,
+    "username": "John",
+    "password": "johnray",
+    "startDate": "2026-03-01",
+    "workStatus": "On Leave",
+    "firstName": "John",
+    "lastName": "Mitra",
+    "age": 19,
+    "address": "bugtong",
+    "contact": "09086533508",
+    "skills": [
+      "sleep"
+    ],
+    "date": "2025-11-02"
+  },
+  {
+    "applicantId": 8259,
+    "username": "John",
+    "password": "rjjjj",
+    "startDate": "2026-01-01",
+    "workStatus": "Active",
+    "firstName": "John",
+    "lastName": "Mitra",
+    "age": 19,
+    "address": "bugtong",
+    "contact": "09086533508",
+    "skills": [
+      "sleep"
+    ],
+    "date": "2025-11-14",
+    "status": "For Evaluation"
+  },
+  {
+    "applicantId": 8759,
+    "username": "rj",
+    "password": "Employee123",
+    "startDate": "2025-11-22",
+    "workStatus": "Active",
+    "firstName": "rj",
+    "lastName": "mitra",
+    "age": 19,
+    "address": "lipa city",
+    "contact": "09086533508",
+    "skills": [
+      "sleep",
+      "eat"
+    ],
+    "date": "2025-11-22",
+    "status": "For Evaluation"
+  }
+]

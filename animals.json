@@ -1,0 +1,56 @@
+[
+  {
+    "id": 101,
+    "name": "Luna",
+    "type": "Dog",
+    "breed": "Beagle",
+    "sex": "Female",
+    "age": "3",
+    "status": "Adoptable"
+  },
+  {
+    "id": 102,
+    "name": "Max",
+    "type": "Dog",
+    "breed": "Shih Tzu",
+    "sex": "Male",
+    "age": "2",
+    "status": "Medical"
+  },
+  {
+    "id": 103,
+    "name": "Chonk",
+    "type": "Dog",
+    "breed": "Rottweiler",
+    "sex": "Male",
+    "age": "2",
+    "status": "Adoptable"
+  },
+  {
+    "id": 104,
+    "name": "Spotty",
+    "type": "Cat",
+    "breed": "Persian",
+    "sex": "Female",
+    "age": "2",
+    "status": "Adoptable"
+  },
+  {
+    "id": 105,
+    "name": "Shiro",
+    "type": "Cat",
+    "breed": "Persian",
+    "sex": "Female",
+    "age": "2",
+    "status": "Adoptable"
+  },
+  {
+    "id": 106,
+    "name": "Ewan",
+    "type": "dog",
+    "breed": "shitzhu",
+    "sex": "Male",
+    "age": "6",
+    "status": "Adoptable"
+  }
+]
