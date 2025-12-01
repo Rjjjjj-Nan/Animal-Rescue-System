@@ -4,7 +4,7 @@ import handlers.RehomeJsonHandler;
 
 import java.util.List;
 
-public class RehomingRequest implements Generator{
+public class RehomingRequest extends Generator{
     private int rehomingId;
     private String username;
     private String name;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import handlers.AnimalJsonHandler;
 
-public class Animal implements Generator{
+public class Animal extends Generator{
     private int id;
     private String name;
     private String type;

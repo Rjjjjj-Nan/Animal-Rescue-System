@@ -1,6 +1,10 @@
 package models;
 
-public class AdoptionApplication {
+import java.util.List;
+
+import handlers.AdoptionInheritJsonHandler;
+
+public class AdoptionApplication extends Generator {
     private int applicationId;
     private String username;
     private int animalId;
@@ -25,6 +29,19 @@ public class AdoptionApplication {
     @Override
     public String toString() {
         return "User: " + username + " | AnimalID: " + animalId + " | Status: " + status;
+    }
+
+    @Override
+    public int idGenerator() {
+        List<AdoptionLogs> id = AdoptionInheritJsonHandler.loadAdoptionLogs();
+
+        if (id.isEmpty()) {
+            return 100;
+        }
+
+        int maxId = id.stream().mapToInt(AdoptionLogs::getApplicationId).max().orElse(100);
+
+        return maxId + 1;
     }
 
 }

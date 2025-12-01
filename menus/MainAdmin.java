@@ -1,8 +1,9 @@
 package menus;
 
 import util.UtilAdmin;
-import util.UtilWorker;
 import util.Utility;
+
+import models.Admin;
 
 public class MainAdmin {
     public static void mainAdmin () {
@@ -11,6 +12,7 @@ public class MainAdmin {
             Utility.clearScreen();
             Utility.loadingScreen();
             Utility.clearScreen();
+            Admin admin = new Admin();
             UtilAdmin.adminMenu();
 
             int choice = 0;
@@ -97,15 +99,40 @@ public class MainAdmin {
                                 UtilAdmin.deleteRecord(type);
                                 break;
                             case 3:
-                                UtilWorker.updateReportStatus();
+                                admin.updateReportStatus();
                                 break;
                             case 4:
-                                UtilWorker.applicationDecision();
+                                admin.applicationDecision();
                                 break;
                             case 5:
-                                UtilWorker.reviewRequest();
+                                admin.reviewRequest();
                                 break;
                             case 6:
+                                boolean animalRecordMenu = true;
+                                while (animalRecordMenu) {
+                                    UtilAdmin.updateAnimalInformation();
+
+                                    switch (Utility.getInput("Enter your choice: ")) {
+                                        case 1:
+                                            admin.addNewAnimal();
+                                            break;
+                                        case 2:
+                                            admin.updateAnimalInformation();
+                                            break;
+                                        case 3:
+                                            admin.updateAnimalStatus();
+                                            break;
+                                        case 4:
+                                            System.out.println("Returning to Record Management Menu...");
+                                            animalRecordMenu = false;
+                                            break;
+                                        default:
+                                            System.out.println("You entered an invalid input. Returning to Record Management Menu...");
+                                            animalRecordMenu = false;
+                                            break;
+                                    }
+                                }
+                            case 7:
                                 System.out.println("Returning to Admin Menu...");
                                 recordMenu = false;
                                 break;

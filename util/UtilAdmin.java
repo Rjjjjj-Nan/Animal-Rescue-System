@@ -70,7 +70,8 @@ public class UtilAdmin {
         System.out.println("[3] Update Report Status");
         System.out.println("[4] Evaluation Adoption Applications");
         System.out.println("[5] Evaluation Rehoming Requests");
-        System.out.println("[6] Admin Menu");
+        System.out.println("[6] Manage Animals");
+        System.out.println("[7] Admin Menu");
     }
 
     public static void deleteType() {
@@ -81,6 +82,14 @@ public class UtilAdmin {
         System.out.println("[4] Delete Rehoming");
         System.out.println("[5] Delete Report");
         System.out.println("[6] Process Choices");
+    }
+
+    public static void updateAnimalInformation() {
+        System.out.println("\n-------- Update Animal Information --------");
+        System.out.println("[1] Add New Animal");
+        System.out.println("[2] Update Animal Information");
+        System.out.println("[3] Update Animal Status");
+        System.out.println("[4] Admin Menu");
     }
 
     //continue working here for the methods
@@ -200,8 +209,12 @@ public class UtilAdmin {
         List<Applicants> applicant = ApplicantJsonHandler.loadApplicants();
         System.out.println("\n----------------- Hire Applicant -----------------");
 
-        System.out.print("Do you want to see the list of applicants (y/n): ");
+        System.out.print("Do you want to see the list of applicants (y/n or .. to go back): ");
         String answer = Utility.inputHandleString().toLowerCase();
+
+        if (answer.equals("..")) {
+            return;
+        }
 
         if (answer.equals("y")) {
             viewAllApplicants();
@@ -310,7 +323,11 @@ public class UtilAdmin {
 
             viewEmployees();
 
-            int id = Utility.readInt("Enter the Id you want to fire/remove: ");
+            int id = Utility.readInt("Enter the Id you want to fire/remove (0 to go back): ");
+
+            if (id == 0) {
+                return;
+            }
 
             boolean found = false;
             Iterator<Employees> iterator = employee.iterator();
@@ -338,7 +355,11 @@ public class UtilAdmin {
 
             viewAllAdoptionLogs("Adoption Logs");
 
-            int id = Utility.readInt("Enter the Id you want to remove: ");
+            int id = Utility.readInt("Enter the Id you want to remove (0 to go back): ");
+
+            if (id == 0) {
+                return;
+            }
 
             boolean found = false;
             Iterator<AdoptionLogs> iterator = adopter.iterator();
@@ -387,7 +408,11 @@ public class UtilAdmin {
 
             System.out.printf("+-----+--------+-----------+-----------------+--------+------+------------+%n");
 
-            int id = Utility.readInt("Enter the animal Id: ");
+            int id = Utility.readInt("Enter the animal Id (o to go back): ");
+
+            if (id == 0) {
+                return;
+            }
 
             boolean found = false;
             Iterator<Animal> iterator = animals.iterator();
@@ -419,7 +444,11 @@ public class UtilAdmin {
 
             UtilWorker.viewPendingRequest();
 
-            int id = Utility.readInt("Enter the Id you want to delete: ");
+            int id = Utility.readInt("Enter the Id you want to delete (0 to go back): ");
+
+            if (id == 0) {
+                return;
+            }
 
             boolean found = false;
             Iterator<RehomingRequest> iterator = rehoming.iterator();
@@ -451,7 +480,11 @@ public class UtilAdmin {
 
             viewAllUserReports();
 
-            int id = Utility.readInt("Enter the Id you want to delete: ");
+            int id = Utility.readInt("Enter the Id you want to delete (0 to go back): ");
+
+            if (id == 0) {
+                return;
+            }
 
             boolean found = false;
             Iterator<ReportLogs> iterator = reports.iterator();
@@ -485,8 +518,12 @@ public class UtilAdmin {
         
         viewEmployees();
 
-        System.out.print("\nDo you want to update the status of employee (y/n)? ");
+        System.out.print("\nDo you want to update the status of employee (y/n or .. to go back)? ");
         String answer = Utility.inputHandleString().toLowerCase();
+
+        if (answer.equals("..")) {
+            return;
+        }
 
 
         if (answer.equals("y")) {
@@ -540,7 +577,11 @@ public class UtilAdmin {
         List<Admin> admins = AdminJsonHandler.loadAdmins();
         System.out.println("\n----------------- Create Another Profile -----------------");
 
-        String username = Utility.inputHandlerStr("Enter new Username: ");
+        String username = Utility.inputHandlerStr("Enter new Username (.. to go back): ");
+
+        if (username.equals("..")) {
+            return;
+        }
         
         boolean exists = false;
         for (Admin admin : admins) {
@@ -572,7 +613,11 @@ public class UtilAdmin {
 
         List<Admin> admins = AdminJsonHandler.loadAdmins();
 
-        String oldPassword = Utility.inputHandlerStr("Enter your old password: ");
+        String oldPassword = Utility.inputHandlerStr("Enter your old password (.. to go back): ");
+
+        if (oldPassword.equals("..")) {
+            return;
+        }
 
         boolean found = false;
         for (Admin admin : admins) {
@@ -608,7 +653,11 @@ public class UtilAdmin {
 
         List<Admin> admins = AdminJsonHandler.loadAdmins();
 
-        String oldUsername = Utility.inputHandlerStr("Enter your old username: ");
+        String oldUsername = Utility.inputHandlerStr("Enter your old username (.. to go back): ");
+
+        if (oldUsername.equals("..")) {
+            return;
+        }
 
         boolean found = false;
         for (Admin admin : admins) {
@@ -656,7 +705,11 @@ public class UtilAdmin {
         }
         System.out.printf("+------+-------------------+--------------+---------------+%n");
 
-        String ans = Utility.inputHandlerStr("Change the worker password (y/n)?: ").toLowerCase();
+        String ans = Utility.inputHandlerStr("Change the worker password (y/n or .. to go back)?: ").toLowerCase();
+
+        if (ans.equals("..")) {
+            return;
+        }
 
         if (ans.equals("y")) {
             int id = Utility.getInput("Enter the 4 digit worker ID: ");

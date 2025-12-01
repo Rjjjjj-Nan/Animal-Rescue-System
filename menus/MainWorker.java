@@ -3,6 +3,7 @@ package menus;
 import util.UtilWorker;
 import util.UtilAdmin;
 import util.Utility;
+import models.Employees;
 
 public class MainWorker {
 
@@ -12,6 +13,7 @@ public class MainWorker {
             Utility.clearScreen();
             Utility.loadingScreen();
             Utility.clearScreen();
+            Employees employee = new Employees();
             UtilWorker.showWorkerMenu();
 
             int choice = 0;
@@ -39,13 +41,13 @@ public class MainWorker {
 
                         switch (Utility.getInput("Enter your choice: ")) {
                             case 1:
-                                UtilWorker.addNewAnimal();
+                                employee.addNewAnimal();
                                 break;
                             case 2:
-                                UtilWorker.updateAnimalInformation();
+                                employee.updateAnimalInformation();
                                 break;
                             case 3:
-                                UtilWorker.updateAnimalStatus();
+                                employee.updateAnimalStatus();
                                 break;
                             case 4:
                                 UtilWorker.showAllAnimals();
@@ -71,7 +73,7 @@ public class MainWorker {
                                 UtilWorker.viewAdoptionApplication();
                                 break;
                             case 2:
-                                UtilWorker.applicationDecision();
+                                employee.applicationDecision();
                                 break;
                             case 3:
                                 System.out.println("Returning to Worker Menu...");
@@ -94,7 +96,7 @@ public class MainWorker {
                                 UtilAdmin.viewAllUserReports();
                                 break;
                             case 2:
-                                UtilWorker.updateReportStatus();
+                                employee.updateReportStatus();
                                 break;
                             case 3:
                                 UtilWorker.updatePriority();
@@ -120,7 +122,7 @@ public class MainWorker {
                                 UtilWorker.viewPendingRequest();
                                 break;
                             case 2:
-                                UtilWorker.reviewRequest();
+                                employee.reviewRequest();
                                 break;
                             case 3:
                                 System.out.println("Returning to Worker Menu...");

@@ -48,6 +48,7 @@ public class MainUser {
         
         while (true) {
             UtilUser.adoptionChoices();
+
             int choice = Utility.getInput("Enter your choice: ");
 
             switch (choice) {
@@ -68,6 +69,7 @@ public class MainUser {
     private static void reportSubmenu(User user) {
         while (true) {
             UtilUser.reportChoices();
+
             int choice = Utility.getInput("Enter your choice: ");
 
             switch (choice) {
@@ -88,6 +90,7 @@ public class MainUser {
     private static void rehomeSubmenu(User user) {
         while (true) {
             UtilUser.rehomeChoices();
+
             int choice = Utility.getInput("Enter your choice: ");
 
             switch (choice) {

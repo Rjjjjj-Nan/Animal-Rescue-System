@@ -1,7 +1,7 @@
 package models;
 
-public interface Generator {
+public abstract class Generator {
     
-    public int idGenerator();
+    public abstract int idGenerator();
 
 }

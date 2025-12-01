@@ -2,16 +2,23 @@ package util;
 
 import models.User;
 import models.Animal;
+import models.Admin;
 import models.AdoptionLogs;
 import models.Report;
 import models.RehomingRequest;
 import models.Applicants;
-
+import models.Employees;
+import handlers.AdminJsonHandler;
 import handlers.AdoptionInheritJsonHandler;
 import handlers.AnimalJsonHandler;
 import handlers.ApplicantJsonHandler;
+import handlers.EmployeeJsonHandler;
 import handlers.RehomeJsonHandler;
 import handlers.UserFileReportHandler;
+import handlers.UserJsonHandler;
+import menus.MainAdmin;
+import menus.MainUser;
+import menus.MainWorker;
 
 import java.util.List;
 
@@ -146,8 +153,20 @@ public class UtilUser {
         System.out.printf("+------+--------+-----------+--------------+--------+------+------------+%n");
 
         try {
-            System.out.print("Enter Animal ID to apply for: ");
+            System.out.print("Enter Animal ID to apply for (0 to go back): ");
             int id = Integer.parseInt(Utility.inputHandleString());
+
+            if (id == 0) {
+                return;
+            }
+            
+            List<AdoptionLogs> exists = AdoptionInheritJsonHandler.loadAdoptionLogs();
+            for (AdoptionLogs adopt : exists) {
+                if (adopt.getAnimalId() == id && adopt.getUsername().equals(user.getUsername())) {
+                    System.out.print("You have already applied for this animal.");
+                    return;
+                }
+            }
 
             AdoptionLogs log = new AdoptionLogs();
             int idGenerate = log.idGenerator();
@@ -187,8 +206,36 @@ public class UtilUser {
     public static void fileReport(User user) {
         Utility.clearScreen();
         System.out.println("\n----------- File Report -----------");
-        System.out.print("Type of Report: ");
-        String type = Utility.inputHandleString();
+        String type = "";
+        System.out.println("\n---------- Types of Report ----------");
+        System.out.println("[1] Animal Abuse");
+        System.out.println("[2] Neglected Animal");
+        System.out.println("[3] Lost Animal");
+        System.out.println("[4] Others");
+        System.out.println("[5] Go Back");
+        switch (Utility.getInput("Enter your choice: ")) {
+            case 1:
+                type = "Animal Abuse";
+                break;
+            case 2:
+                type = "Neglected Animal";
+                break;
+            case 3:
+                type = "Lost Animal";
+                break;
+            case 4:
+                type = "Others";
+                break;
+            case 5:
+                type = "..";
+                break;
+            default:
+                System.out.println("You entered an invalid input.");
+        }
+
+        if (type.equals("..")) {
+            return;
+        }
         System.out.print("Description: ");
         String desc = Utility.inputHandleString();
         System.out.print("Location: ");
@@ -236,8 +283,11 @@ public class UtilUser {
     public static void submitRehomeRequest(User user) {
         Utility.clearScreen();
         System.out.println("\n----------- Rehoming Request -----------");
-        System.out.print("Pet Name: ");
+        System.out.print("Pet Name (.. to go back): ");
         String name = Utility.inputHandleString();
+        if (name.equals("..")) {
+            return;
+        }
         System.out.print("Animal Type: ");
         String type = Utility.inputHandleString();
         System.out.print("Breed: ");
@@ -305,8 +355,12 @@ public class UtilUser {
         Utility.clearScreen();
         System.out.println("\nApply as Worker");
 
-        System.out.print("Enter First Name: ");
+        System.out.print("Enter First Name (.. to go back): ");
         String firstName = Utility.inputHandleString();
+
+        if (firstName.equals("..")) {
+            return;
+        }
 
         System.out.print("Enter Last Name: ");
         String lastName = Utility.inputHandleString();
@@ -342,5 +396,167 @@ public class UtilUser {
         ApplicantJsonHandler.addApplicants(applicant);
         System.out.println("Your Application is Submitted Successfully.");
         System.out.println("Please Wait for the Updates.");
+    }
+
+    public static void register() {
+        Utility.clearScreen();
+        System.out.println("\nRegister New User");
+
+        String name;
+        do {
+            System.out.print("Full Name: ");
+            name = Utility.inputHandleString().trim();
+            if (!name.matches("[A-Za-z ]+")) {
+                System.out.println("Invalid name. Use letters and spaces only.");
+            }
+        } while (!name.matches("[A-Za-z ]+"));
+
+        int age;
+        while (true) {
+            System.out.print("Age: ");
+            String ageInput = Utility.inputHandleString();
+            try {
+                age = Integer.parseInt(ageInput);
+                if (age <= 0) {
+                    System.out.println("Age must be a positive number.");
+                    continue;
+                }
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid age. Please enter a number.");
+            }
+        }
+
+        String address;
+        do {
+            System.out.print("Address: ");
+            address = Utility.inputHandleString().trim();
+            if (address.isBlank()) {
+                System.out.println("Address cannot be empty.");
+            }
+        } while (address.isBlank());
+
+        String contact;
+        do {
+            System.out.print("Contact No (7–11 digits): ");
+            contact = Utility.inputHandleString().trim();
+            if (!contact.matches("\\d{7,11}")) {
+                System.out.println("Invalid contact number. Use 7 to 11 digits.");
+            }
+        } while (!contact.matches("\\d{7,11}"));
+
+        String username;
+        do {
+            System.out.print("Username: ");
+            username = Utility.inputHandleString().trim();
+            if (username.isBlank()) {
+                System.out.println("Username cannot be empty.");
+            }
+        } while (username.isBlank());
+
+        String password;
+        do {
+            System.out.print("Password: ");
+            password = Utility.inputHandleString();
+            if (password.isBlank()) {
+                System.out.println("Password cannot be empty.");
+            }
+        } while (password.isBlank());
+
+        User newUser = new User(name, age, address, contact, username, password);
+        UserJsonHandler.addUser(newUser);
+
+        System.out.println("Registration successful. You can now log in!");
+    }
+
+    public static void login(List<Animal> animals) {
+        Utility.clearScreen();
+        System.out.println("\nLogin Options");
+
+        System.out.println("[1] User");
+        System.out.println("[2] Worker");
+        System.out.println("[3] Admin");
+
+        switch (Utility.getInput("Enter your choice: ")) {
+            case 1:
+                Utility.clearScreen();
+                System.out.println("\nLogin as User");
+                String username;
+                do {
+                    System.out.print("Username: ");
+                    username = Utility.inputHandleString();
+                    if (username.isBlank()) {
+                        System.out.println("Username cannot be empty.");
+                    }
+                } while (username.isBlank());
+
+                String password;
+                do {
+                    System.out.print("Password: ");
+                    password = Utility.inputHandleString();
+                    if (password.isBlank()) {
+                        System.out.println("Password cannot be empty.");
+                    }
+                } while (password.isBlank());
+
+                User user = UserJsonHandler.login(username, password);
+
+                if (user != null) {
+                    System.out.println("Login successful. Welcome, " + user.getFullName() + "!");
+                    MainUser.show(user, animals);
+                } else {
+                    System.out.println("Invalid credentials. Try again.");
+                }
+                break;
+            case 2:
+                Utility.clearScreen();
+                System.out.println("\nLogin as Worker");
+                List<Employees> employees = EmployeeJsonHandler.loadEmployees();
+                
+                System.out.print("Enter your applicant ID: ");
+                int id = Utility.inputHandlerInt();
+
+                System.out.print("Enter your password: ");
+                String workerPassword = Utility.inputHandleString();
+
+                boolean foundWorker = false;
+                for (Employees employee : employees) {
+                    if ((id == employee.getApplicantId()) && (workerPassword.equals(employee.getPassword()))) {
+                        foundWorker = true;
+                        MainWorker.workerMain();
+                        break;
+                    }
+                }
+                if (!foundWorker) {
+                    System.out.println("The employee id and password you entered is invalid.");
+                }
+                break;
+            case 3:
+                Utility.clearScreen();
+                System.out.println("\nLogin as Admin");
+                List<Admin> admins = AdminJsonHandler.loadAdmins();
+
+                System.out.print("Enter username: ");
+                String adminUsername = Utility.inputHandleString();
+
+                System.out.print("Enter password: ");
+                String adminPassword = Utility.inputHandleString();
+
+                boolean foundAdmin = false;
+                for (Admin admin : admins) {
+                    if ((adminUsername.equals(admin.getUsername())) && (adminPassword.equals(admin.getPassword()))) {
+                        foundAdmin = true;
+                        MainAdmin.mainAdmin();
+                        break;
+                    }
+                }
+                if (!foundAdmin) {
+                    System.out.println("The username and password you entered is invalid.");
+                }
+                break;
+            default:
+                System.out.println("Error. Your entered an invalid input.");
+                break;
+        }
     }
 }

@@ -2,11 +2,8 @@ package models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
-import handlers.ReportJsonHandler;
-
-public class ReportLogs extends Report implements Generator{
+public class ReportLogs extends Report {
     private int reportId;
     private String date;
     private String time;
@@ -40,18 +37,5 @@ public class ReportLogs extends Report implements Generator{
     public String toString() {
         return "User: " + getUsername() + " | Type: " + getType() + " | Location: " + getLocation() +
                " | Status: " + getStatus() + " | Priority: " + getPriority() + " | Date: " + date + " | Time: " + time;
-    }
-
-    @Override
-    public int idGenerator() {
-        List<ReportLogs> id = ReportJsonHandler.loadUserReports();
-
-        if (id.isEmpty()) {
-            return 100;
-        }
-
-        int maxId = id.stream().mapToInt(ReportLogs::getReportId).max().orElse(100);
-
-        return maxId + 1;
     }
 }

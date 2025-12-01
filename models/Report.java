@@ -1,6 +1,10 @@
 package models;
 
-public class Report {
+import java.util.List;
+
+import handlers.ReportJsonHandler;
+
+public class Report extends Generator{
     private String username;
     private String type;
     private String description;
@@ -34,4 +38,18 @@ public class Report {
         return "User: " + username + " | Type: " + type + " | Location: " + location +
                " | Status: " + status + " | Priority: " + priority;
     }
+
+    @Override
+    public int idGenerator() {
+        List<ReportLogs> id = ReportJsonHandler.loadUserReports();
+
+        if (id.isEmpty()) {
+            return 100;
+        }
+
+        int maxId = id.stream().mapToInt(ReportLogs::getReportId).max().orElse(100);
+
+        return maxId + 1;
+    }
+
 }

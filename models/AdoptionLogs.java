@@ -1,13 +1,9 @@
 package models;
 
-import java.util.List;
-
-import handlers.AdoptionInheritJsonHandler;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class AdoptionLogs extends AdoptionApplication implements Generator{ 
+public class AdoptionLogs extends AdoptionApplication { 
     
     private String date;
 
@@ -35,16 +31,4 @@ public class AdoptionLogs extends AdoptionApplication implements Generator{
         return "Application Id: " + getApplicationId() + " | Adopter: " + getUsername() + " | Animal Id: " + getAnimalId() + " | Status: " + getStatus() + "Date: " + date;
     }
 
-    @Override
-    public int idGenerator() {
-        List<AdoptionLogs> id = AdoptionInheritJsonHandler.loadAdoptionLogs();
-
-        if (id.isEmpty()) {
-            return 100;
-        }
-
-        int maxId = id.stream().mapToInt(AdoptionLogs::getApplicationId).max().orElse(100);
-
-        return maxId + 1;
-    }
 }
