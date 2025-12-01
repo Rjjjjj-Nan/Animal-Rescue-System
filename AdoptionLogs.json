@@ -25,7 +25,7 @@
     "applicationId": 102,
     "username": "john",
     "animalId": 2,
-    "status": "Pending"
+    "status": "Approved"
   },
   {
     "date": "2025-11-15 16:22:28",
@@ -53,7 +53,7 @@
     "applicationId": 106,
     "username": "john",
     "animalId": 104,
-    "status": "Pending"
+    "status": "Approved"
   },
   {
     "date": "2025-11-22 09:52:43",
@@ -74,6 +74,6 @@
     "applicationId": 109,
     "username": "john",
     "animalId": 106,
-    "status": "Pending"
+    "status": "Approved"
   }
 ]

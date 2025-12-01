@@ -5,6 +5,7 @@ import java.util.List;
 import handlers.ReportJsonHandler;
 
 public class Report extends Generator{
+    private int reportId;
     private String username;
     private String type;
     private String description;
@@ -13,6 +14,7 @@ public class Report extends Generator{
     private String priority; // Low / Med / High / Urgent
 
     public Report(String username, String type, String description, String location) {
+        this.reportId = idGenerator();
         this.username = username;
         this.type = type;
         this.description = description;
@@ -29,6 +31,7 @@ public class Report extends Generator{
     public String getLocation() { return location; }
     public String getStatus() { return status; }
     public String getPriority() { return priority; }
+    public int getReportId() { return reportId; }
 
     public void setStatus(String status) { this.status = status; }
     public void setPriority(String priority) { this.priority = priority; }

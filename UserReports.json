@@ -1,8 +1,8 @@
 [
   {
-    "reportId": 101,
     "date": "2025-11-01",
     "time": "17:42:42",
+    "reportId": 101,
     "username": "Johnraysuuu",
     "type": "dont know",
     "description": "please get this animal here",
@@ -11,9 +11,9 @@
     "priority": "Low"
   },
   {
-    "reportId": 102,
     "date": "2025-11-01",
     "time": "17:43:01",
+    "reportId": 102,
     "username": "Johnraysuuu",
     "type": "dont know",
     "description": "please get this animal here",
@@ -22,9 +22,9 @@
     "priority": "Medium"
   },
   {
-    "reportId": 103,
     "date": "2025-11-01",
     "time": "17:43:19",
+    "reportId": 103,
     "username": "Johnraysuuu",
     "type": "dont know",
     "description": "please get this animal here",
@@ -33,20 +33,20 @@
     "priority": "Medium"
   },
   {
-    "reportId": 104,
     "date": "2025-11-07",
     "time": "20:38:37",
+    "reportId": 104,
     "username": "alix",
     "type": "Abandonment",
     "description": "I found an abandoned dog, please check",
     "location": "Namuco",
     "status": "Resolved",
-    "priority": "Urgent"
+    "priority": "High"
   },
   {
-    "reportId": 105,
     "date": "2025-11-14",
     "time": "19:17:39",
+    "reportId": 105,
     "username": "john",
     "type": "hazardous",
     "description": "bangaw na dog",
@@ -55,14 +55,47 @@
     "priority": "Unassigned yet"
   },
   {
-    "reportId": 106,
     "date": "2025-11-15",
     "time": "17:15:58",
+    "reportId": 106,
     "username": "john",
     "type": "ewan",
     "description": "try",
     "location": "bugtong",
     "status": "Resolved",
     "priority": "Unassigned yet"
+  },
+  {
+    "date": "2025-12-01",
+    "time": "23:37:59",
+    "reportId": 107,
+    "username": "john",
+    "type": "Animal Abuse",
+    "description": "abusive owner",
+    "location": "bugtong",
+    "status": "In-Review",
+    "priority": "Unassigned yet"
+  },
+  {
+    "date": "2025-12-01",
+    "time": "23:48:25",
+    "reportId": 108,
+    "username": "john",
+    "type": "Neglected Animal",
+    "description": "hurting the animal",
+    "location": "bugtong",
+    "status": "In-Review",
+    "priority": "Unassigned yet"
+  },
+  {
+    "date": "2025-12-02",
+    "time": "00:07:10",
+    "reportId": 109,
+    "username": "john",
+    "type": "Others",
+    "description": "ewan",
+    "location": "bugtong",
+    "status": "Archived",
+    "priority": "Med"
   }
 ]

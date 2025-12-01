@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ReportLogs extends Report {
-    private int reportId;
     private String date;
     private String time;
 
@@ -12,7 +11,6 @@ public class ReportLogs extends Report {
         LocalDateTime now = LocalDateTime.now();
         this.date = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         this.time = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-        reportId++;
     }
 
     public ReportLogs(String username, String type, String description, String location) {
@@ -20,7 +18,7 @@ public class ReportLogs extends Report {
         LocalDateTime now = LocalDateTime.now();
         this.date = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         this.time = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-        this.reportId = idGenerator();
+        super.getReportId();
     }
 
     public String getDate() {
@@ -28,9 +26,6 @@ public class ReportLogs extends Report {
     }
     public String getTime() {
         return time;
-    }
-    public int getReportId() {
-        return reportId;
     }
 
     @Override
