@@ -6,7 +6,7 @@ import handlers.AdoptionInheritJsonHandler;
 import handlers.AnimalJsonHandler;
 import handlers.RehomeJsonHandler;
 import handlers.ReportJsonHandler;
-
+import handlers.UserFileReportHandler;
 import util.UtilWorker;
 import util.Utility;
 
@@ -255,6 +255,14 @@ public class Admin extends Function {
 
                 report.setStatus(status);
                 ReportJsonHandler.saveReportLogs(reports);
+                List<Report> allReports = UserFileReportHandler.loadReports();
+                for (Report r : allReports) {
+                    if (r.getReportId() == report.getReportId()) {
+                        r.setStatus(status);
+                        break;
+                    }
+                }
+                UserFileReportHandler.saveReports(allReports);
                 System.out.println("Update Status Successfully.");
                 break;
             }
