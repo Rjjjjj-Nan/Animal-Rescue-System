@@ -52,5 +52,14 @@
     "location": "bugtong",
     "status": "Archived",
     "priority": "Unassigned yet"
+  },
+  {
+    "reportId": 110,
+    "username": "alix",
+    "type": "Animal Abuse",
+    "description": "I saw a man kicking a brown dog in his yard",
+    "location": "Rosario, Batangas",
+    "status": "Resolved",
+    "priority": "Unassigned yet"
   }
 ]

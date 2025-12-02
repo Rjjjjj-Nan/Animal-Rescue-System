@@ -82,5 +82,12 @@
     "username": "alix",
     "animalId": 101,
     "status": "Denied"
+  },
+  {
+    "date": "2025-12-02 21:01:11",
+    "applicationId": 111,
+    "username": "alix",
+    "animalId": 103,
+    "status": "Denied"
   }
 ]

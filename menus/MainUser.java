@@ -11,11 +11,11 @@ import java.util.List;
 public class MainUser {
 
     public static void show(User user, List<Animal> animals) {
-        Utility.clearScreen();
-        Utility.loadingScreen();
-        Utility.clearScreen();
-        
         while (true) {
+            Utility.clearScreen();
+            Utility.loadingScreen();
+            Utility.clearScreen();
+
             UtilUser.userMenu(user);
 
             int choice = 0;
