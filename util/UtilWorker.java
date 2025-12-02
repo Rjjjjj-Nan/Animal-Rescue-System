@@ -38,7 +38,7 @@ public class UtilWorker {
 
     public static void showAdoptionMenu() {
         System.out.println("\n-------- Handle Adoptions --------");
-        System.out.println("[1] View Adoption History");
+        System.out.println("[1] View Adoption Applications");
         System.out.println("[2] Evaluate Applications");
         System.out.println("[3] Back to Worker Menu");
     }
