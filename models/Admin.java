@@ -204,13 +204,13 @@ public class Admin extends Function {
 
         boolean contain = false;
         if (answer.equals("y")) {
-            System.out.printf("+-------+-----------------+------------------+----------------------------------------+------------+-------------+----------------+------------+------------+%n");
-            System.out.printf("| Id    | Username        | Type             | Description                            | Location   | Status      | Priority       | Date       | Time       |%n");
-            System.out.printf("+-------+-----------------+------------------+----------------------------------------+------------+-------------+----------------+------------+------------+%n");
+            System.out.printf("+-------+-----------------+------------------+---------------------------------------------------------+---------------------+-------------+----------------+------------+------------+%n");
+            System.out.printf("| Id    | Username        | Type             | Description                                             | Location            | Status      | Priority       | Date       | Time       |%n");
+            System.out.printf("+-------+-----------------+------------------+---------------------------------------------------------+---------------------+-------------+----------------+------------+------------+%n");
             for (ReportLogs report : reports) {
                 if (report.getStatus().equals("In-Review")) {
                     contain = true;
-                    System.out.printf("| %-5d | %-15s | %-16s | %-38s | %-10s | %-11s | %-14s | %-10s | %-10s |%n",
+                    System.out.printf("| %-5d | %-15s | %-16s | %-55s | %-19s | %-11s | %-14s | %-10s | %-10s |%n",
                     report.getReportId(),
                     report.getUsername(),
                     report.getType(),
@@ -222,7 +222,7 @@ public class Admin extends Function {
                     report.getTime());
                 }
             }
-            System.out.printf("+-------+-----------------+------------------+----------------------------------------+------------+-------------+----------------+------------+------------+%n");
+            System.out.printf("+-------+-----------------+------------------+---------------------------------------------------------+---------------------+-------------+----------------+------------+------------+%n");
         }
         if (!contain) {
             System.out.println("There are no In-Review reports as of the moment.");
@@ -279,20 +279,24 @@ public class Admin extends Function {
 
         System.out.println("\n-------- Evaluation of Adoption Application --------");
 
-        System.out.printf("+--------+------------------+%n");
-        System.out.printf("| Id     | Decision         |%n");
-        System.out.printf("+--------+------------------+%n");
+        // Show richer context for each pending application so the admin
+        // knows which user and when they applied, without exposing Animal ID
+        System.out.printf("+--------+------------+------------+----------------------+%n");
+        System.out.printf("| Id     | Username   | Status     | Date                 |%n");
+        System.out.printf("+--------+------------+------------+----------------------+%n");
         boolean contain = false;
         for (AdoptionLogs application : applications) {
             if (application.getStatus().equals("Pending")) {
                 contain = true;
-                System.out.printf("| %-6d | %-16s |%n",
+                System.out.printf("| %-6d | %-10s | %-10s | %-20s |%n",
                     application.getApplicationId(),
-                    application.getStatus()
+                    application.getUsername(),
+                    application.getStatus(),
+                    application.getDate()
                 );
             }
         }
-        System.out.printf("+--------+------------------+%n");
+        System.out.printf("+--------+------------+------------+----------------------+%n");
         if (!contain) {
             System.out.println("There are no pending application as of the moment.");
             return;
