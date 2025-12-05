@@ -24,6 +24,7 @@ import java.util.List;
 
 public class UtilUser {
 
+    // display ng choices 
     public static void userMenu(User user) {
         System.out.println("\nWelcome, " + user.getFullName() + "!");
         System.out.println("[1] Adoption");
@@ -59,6 +60,7 @@ public class UtilUser {
 
     // Adoption Actions 
 
+    // yung parameter dito para sya sa pag load ng data ng animals
     public static void showAdoptableAnimals(List<Animal> animals) {
         Utility.clearScreen();
         System.out.println("\nAdoptable Animals:\n");
@@ -68,6 +70,8 @@ public class UtilUser {
 
         boolean found = false;
 
+        // for each loop
+        // used para mag iterate sa list ng mga items
         for (Animal animal : animals) {
             if (animal.getStatus().equalsIgnoreCase("Adoptable")) {
                 System.out.printf("| %-4d | %-6s | %-9s | %-12s | %-6s | %-4s | %-10s |%n",
@@ -82,6 +86,7 @@ public class UtilUser {
             }
         }
 
+        // validators if meron laman yung list ng animal
         if (!found) {
             System.out.println("| No adoptable animals available.                                           |");
         }
@@ -92,7 +97,7 @@ public class UtilUser {
         String animalType = Utility.inputHandleString().trim().toLowerCase();
 
         if (!animalType.isEmpty()) {
-            System.out.println("\nFiltered by Type: " + animalType + "\n");
+            System.out.println("\nFiltered by Type: " + animalType + "\n"); 
             System.out.printf("+------+--------+-----------+--------------+--------+------+------------+%n");
             System.out.printf("| ID   | Name   | Type      | Breed        | Sex    | Age  | Status     |%n");
             System.out.printf("+------+--------+-----------+--------------+--------+------+------------+%n");
@@ -100,9 +105,9 @@ public class UtilUser {
             boolean typeFound = false;
 
             for (Animal animal : animals) {
-                if (animal.getStatus().equalsIgnoreCase("Adoptable")
+                if (animal.getStatus().equalsIgnoreCase("Adoptable") // iddisplay lahat ng mga Adoptable
                         && animal.getType().toLowerCase().contains(animalType)) {
-                    System.out.printf("| %-4d | %-6s | %-9s | %-12s | %-6s | %-4s | %-10s |%n",
+                    System.out.printf("| %-4d | %-6s | %-9s | %-12s | %-6s | %-4s | %-10s |%n", // nag fformat ng table 
                             animal.getId(),
                             animal.getName(),
                             animal.getType(),
@@ -124,7 +129,7 @@ public class UtilUser {
 
     public static void applyForAdoption(User user, List<Animal> animals) {
         Utility.clearScreen();
-        List<Animal> allAnimals = AnimalJsonHandler.loadAnimals();
+        List<Animal> allAnimals = AnimalJsonHandler.loadAnimals(); // ito yung nigagamit sa pag load ng data nililist yung mga Animals 
         System.out.println("\nAdoptable Animals:\n");
         System.out.printf("+------+--------+-----------+--------------+--------+------+------------+%n");
         System.out.printf("| ID   | Name   | Type      | Breed        | Sex    | Age  | Status     |%n");
@@ -133,7 +138,7 @@ public class UtilUser {
         boolean found = false;
 
         for (Animal animal : allAnimals) {
-            if (animal.getStatus().equalsIgnoreCase("Adoptable")) {
+            if (animal.getStatus().equalsIgnoreCase("Adoptable")) { // lahat lang ng adoptable yung madidisplay
                 System.out.printf("| %-4d | %-6s | %-9s | %-12s | %-6s | %-4s | %-10s |%n",
                         animal.getId(),
                         animal.getName(),
@@ -156,6 +161,7 @@ public class UtilUser {
             System.out.print("Enter Animal ID to apply for (0 to go back): ");
             int id = Integer.parseInt(Utility.inputHandleString());
 
+            // ito yung validator if gusto ng user na back 
             if (id == 0) {
                 return;
             }
@@ -354,7 +360,7 @@ public class UtilUser {
         Utility.clearScreen();
         System.out.println("\nApply as Worker");
 
-        System.out.print("Enter First Name (.. to go back): ");
+        System.out.print("Enter First Name (.. to cancel): ");
         String firstName = Utility.inputHandleString();
 
         if (firstName.equals("..")) {
@@ -403,8 +409,13 @@ public class UtilUser {
 
         String name;
         do {
-            System.out.print("Full Name: ");
+            System.out.print("Full Name (.. to cancel): ");
             name = Utility.inputHandleString().trim();
+
+            if (name.equals("..")) {
+                return;
+            }
+
             if (!name.matches("[A-Za-z ]+")) {
                 System.out.println("Invalid name. Use letters and spaces only.");
             }

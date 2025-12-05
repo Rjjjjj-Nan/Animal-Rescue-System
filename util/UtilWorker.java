@@ -17,6 +17,7 @@ import java.util.List;
 
 public class UtilWorker {
 
+    // menus for the program
     public static void showWorkerMenu() {
         System.out.println("\n-------- WORKER MENU --------");
         System.out.println("[1] Manage Animal Records");
@@ -71,17 +72,19 @@ public class UtilWorker {
     //methods here
 
     public static void showAllAnimals() {
-        Utility.clearScreen();
-        List<Animal> animals = AnimalJsonHandler.loadAnimals();
+        Utility.clearScreen(); //para maclear yung nandun sa taas
+        List<Animal> animals = AnimalJsonHandler.loadAnimals(); //nag gagawa ng list for animal class tapos niloload yung data
 
-        System.out.println("\nAnimals:\n");
+        System.out.println("\nAnimals:\n"); //para lang to sa pag didisplay ng data animal
         System.out.printf("+-----+--------+-----------+-----------------+--------+------+------------+%n");
         System.out.printf("| ID  | Name   | Type      | Breed           | Sex    | Age  | Status     |%n");
         System.out.printf("+-----+--------+-----------+-----------------+--------+------+------------+%n");
 
+        //for each loop
+        // nag for each dito para maloop yung nasa loob ng list then display gamit yung mga attributes ng animal
         for (Animal dog : animals) {
-            System.out.printf("| %-3d | %-6s | %-9s | %-15s | %-6s | %-4s | %-10s |%n",
-                    dog.getId(),
+            System.out.printf("| %-3d | %-6s | %-9s | %-15s | %-6s | %-4s | %-10s |%n", // ito nigamit lang para iformat yung kung pano madidisplay yung mga data
+                    dog.getId(), // ito yung mga attrib ng animal na nadisplay
                     dog.getName(),
                     dog.getType(),
                     dog.getBreed(),
@@ -94,7 +97,6 @@ public class UtilWorker {
     }
 
     //this will handle the repeated inputs for animal update
-
     public static Animal selectAnimal(List<Animal> animals) {
         System.out.print("Enter the animal id: ");
         int id = Utility.inputHandlerInt();
@@ -110,15 +112,17 @@ public class UtilWorker {
 
     public static void viewAdoptionApplication() {
         Utility.clearScreen();
-        List<AdoptionLogs> adoptions = AdoptionInheritJsonHandler.loadAdoptionLogs();
+        List<AdoptionLogs> adoptions = AdoptionInheritJsonHandler.loadAdoptionLogs(); // gaya lang din to nung kanina na nag gagawa ng list then load yung data
 
         System.out.println("\n-------- View Adoption Application --------");
 
+        // ito nigagamit lang as validator para malaman if meron na ba laman yung list
         if (adoptions.isEmpty()) {
             System.out.println("There are no adoption applications.");
             return;
         }
 
+        // ito yung nag didisplay gaya nung kanina same structure lang naiiba lang yung mga data na naka input
         System.out.printf("+--------+------------+-----------+------------+%n");
         System.out.printf("| Id     | Username   | Animal ID | Status     |%n");
         System.out.printf("+--------+------------+-----------+------------+%n");
@@ -137,24 +141,31 @@ public class UtilWorker {
 
     public static void updatePriority() {
         Utility.clearScreen();
-        List<ReportLogs> reports = ReportJsonHandler.loadUserReports();
+        List<ReportLogs> reports = ReportJsonHandler.loadUserReports(); // pang load ng data (if makita na meron List<> sa una tapos load keyword pang load lang ng data)
 
         System.out.println("\n-------- Update Priority --------");
 
         System.out.print("Do you want to view the report list (y/n or .. to go back): ");
         String answer = Utility.inputHandleString().toLowerCase();
 
+        // ito yung nigamit para mavalidate if want ng user na mag go back
         if (answer.equals("..")) {
             return;
         }
 
+        // validator para malaman if meron na laman yung list
         if (answer.equals("y")) {
             UtilAdmin.viewAllUserReports();
         }
         
-        System.out.print("Enter the Id: ");
+        System.out.print("Enter the Id (0 to cancel): ");
         int id = Utility.inputHandlerInt();
+        if (id == 0) {
+            return;
+        }
 
+        // for each loop
+        // pang iterate ng laman ng list
         boolean found = false;
         for (ReportLogs report : reports) {
             if (id == report.getReportId()) {
@@ -164,7 +175,10 @@ public class UtilWorker {
                 System.out.println("[2] Med");
                 System.out.println("[3] High");
                 System.out.println("[4] Urgent");
+                System.out.println("[5] Cancel");
 
+                // switch statement
+                // para sa pag seset ng new status ng report
                 String status;
                 switch (Utility.getInput("Enter you choice: ")) {
                     case 1:
@@ -179,17 +193,21 @@ public class UtilWorker {
                     case 4:
                         status = "Urgent";
                         break;
+                    case 5:
+                        System.out.println("Update cancelled.");
+                        return;
                     default:
                         System.out.println("You entered an invalid input.");
                         return;
                 }
 
-                report.setPriority(status);
-                ReportJsonHandler.saveReportLogs(reports);
+                report.setPriority(status); //dito nag seset ng new value para sa (priority)
+                ReportJsonHandler.saveReportLogs(reports); // nag set kanina ng new value dito naman nisasave na lang yung bagong set na value para mag reflect na sa json file
                 System.out.println("Update Status Successfully.");
                 break;
             }
         }
+        //dito ay validation para malaman if wala ba nag eexist na ganun na data
         if (!found) {
             System.out.println("There is no report with this Id: " + id);
         }
@@ -197,10 +215,12 @@ public class UtilWorker {
 
     public static void viewPendingRequest() {
         Utility.clearScreen();
-        List<RehomingRequest> requests = RehomeJsonHandler.loadRequests();
+        List<RehomingRequest> requests = RehomeJsonHandler.loadRequests(); // nag loload ng data
 
         System.out.println("\n-------- Pending Request --------");
 
+        //display ng data
+        //gamit yung for each
         boolean contain = false;
         System.out.printf("+------+------------+--------+-----------+-------------+--------+------+-------------+%n");
         System.out.printf("| Id   |Username    | Name   | Type      | Breed       | Sex    | Age  | Status      |%n");
@@ -228,7 +248,7 @@ public class UtilWorker {
 
     public static void changePassword() {
         Utility.clearScreen();
-        List<Employees> employees = EmployeeJsonHandler.loadEmployees();
+        List<Employees> employees = EmployeeJsonHandler.loadEmployees(); // niloload yung list ng employees
         System.out.println("\n-------- Worker Password Customizer --------");
 
         int id = Utility.getInput("Enter the 4 digit worker ID (0 to go back): ");
@@ -237,17 +257,19 @@ public class UtilWorker {
             return;
         }
 
+        // for each loop
+        // para ma iterate yung mga laman ng employee na list
         boolean found = false;
         for (Employees employee : employees) {
             if (id == employee.getApplicantId()) {
                 found = true;
-                String old = Utility.inputHandlerStr("Enter your old password: ");
-                String newPass = Utility.inputHandlerStr("Enter the new password: ");
+                String old = Utility.inputHandlerStr("Enter your old password: "); // dito nieenter yung dating password
+                String newPass = Utility.inputHandlerStr("Enter the new password: "); // dito nag lalagay ng bago na password
                 if (!newPass.equals(old)) {
-                    String confirm = Utility.inputHandlerStr("Please confirm your new password: ");
+                    String confirm = Utility.inputHandlerStr("Please confirm your new password: "); // confirmation ng new password
                     if (confirm.equals(newPass)) {
-                        employee.setPassword(newPass);
-                        EmployeeJsonHandler.saveEmployee(employees);
+                        employee.setPassword(newPass); // niseset yung new password
+                        EmployeeJsonHandler.saveEmployee(employees); // nisasave yung new password
                         System.out.println("Password changed successfully.");
                         break;
                     }
