@@ -132,16 +132,17 @@ public class Admin extends Function {
 
         System.out.println("\n-------- Update Animal Status --------");
 
-        System.out.printf("+-----+------------+%n");
-        System.out.printf("| Id  | Status     |%n");
-        System.out.printf("+-----+------------+%n");
+        System.out.printf("+-----+-----------+------------+%n");
+        System.out.printf("| Id  | Name      | Status     |%n");
+        System.out.printf("+-----+-----------+------------+%n");
         for (Animal animal : animals) {
-            System.out.printf("| %-3d | %-10s |%n",
+            System.out.printf("| %-3d | %-9s | %-10s |%n",
                 animal.getId(),
+                animal.getName(),
                 animal.getStatus()            
             );
         }
-        System.out.printf("+-----+------------+%n");
+        System.out.printf("+-----+-----------+------------+%n");
 
         System.out.print("Enter the Id of Animal (0 to go back): ");
         int id = Utility.inputHandlerInt();
@@ -158,6 +159,7 @@ public class Admin extends Function {
                 System.out.println("[1] Adoptable");
                 System.out.println("[2] Quarantine");
                 System.out.println("[3] Medical");
+                System.out.println("[4] Cancel");
 
                 String status;
                 System.out.print("Enter the status of animal: ");
@@ -173,6 +175,9 @@ public class Admin extends Function {
                     case 3:
                         status = "Medical";
                         break;
+                    case 4:
+                        System.out.println("Update cancelled.");
+                        return;
                     default:
                         System.out.println("You entered an invalid input.");
                         return;
@@ -229,8 +234,11 @@ public class Admin extends Function {
             return;
         }
         
-        System.out.print("Enter the Id: ");
+        System.out.print("Enter the Id (0 to cancel): ");
         int id = Utility.inputHandlerInt();
+        if (id == 0) {
+            return;
+        }
 
         boolean found = false;
         for (ReportLogs report : reports) {
@@ -239,15 +247,21 @@ public class Admin extends Function {
                 System.out.println("\n-------- Choices --------");
                 System.out.println("[1] Resolved");
                 System.out.println("[2] Archived");
+                System.out.println("[3] Cancel");
 
                 String status;
-                switch (Utility.getInput("Enter you choice: ")) {
+                int choice = Utility.getInput("Enter you choice: ");
+
+                switch (choice) {
                     case 1:
                         status = "Resolved";
                         break;
                     case 2:
                         status = "Archived";
                         break;
+                    case 3:
+                        System.out.println("Update cancelled.");
+                        return;
                     default:
                         System.out.println("You entered an invalid input.");
                         return;
@@ -263,7 +277,7 @@ public class Admin extends Function {
                     }
                 }
                 UserFileReportHandler.saveReports(allReports);
-                System.out.println("Update Status Successfully.");
+                System.out.println("Updated Status Successfully.");
                 break;
             }
         }
@@ -314,15 +328,21 @@ public class Admin extends Function {
                 System.out.println("\n-------- Choices --------");
                 System.out.println("[1] Approved");
                 System.out.println("[2] Denied");
+                System.out.println("[3] Cancel");
 
                 String decision;
-                switch (Utility.getInput("Enter you choice: ")) {
+                int decisionChoice = Utility.getInput("Enter you choice: ");
+
+                switch (decisionChoice) {
                     case 1:
                         decision = "Approved";
                         break;
                     case 2:
                         decision = "Denied";
                         break;
+                    case 3:
+                        System.out.println("Evaluation cancelled.");
+                        return;
                     default:
                         System.out.println("You entered an invalid input.");
                         return;
@@ -370,6 +390,7 @@ public class Admin extends Function {
                     System.out.println("\n-------- Choices --------");
                     System.out.println("[1] Approved");
                     System.out.println("[2] Denied");
+                    System.out.println("[3] Cancel");
                     System.out.print("Enter your choice: ");
                     int answer = Utility.inputHandlerInt();
 
@@ -381,6 +402,9 @@ public class Admin extends Function {
                         case 2:
                             status = "Denied";
                             break;
+                        case 3:
+                            System.out.println("Review cancelled.");
+                            return;
                         default:
                             System.out.println("You entered an invalid input.");
                             return;

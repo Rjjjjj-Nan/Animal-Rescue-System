@@ -219,8 +219,12 @@ public class UtilAdmin {
         if (answer.equals("y")) {
             viewAllApplicants();
         }
-        System.out.print("\nDo you want to hire an employee (y/n)? ");
+        System.out.print("\nDo you want to hire an employee (y/n or .. to cancel)? ");
         String response = Utility.inputHandleString().toLowerCase();
+
+        if (response.equals("..")) {
+            return;
+        }
 
         if (response.equals("y")) {
             System.out.print("\nEnter the full name of the employee you want to hire: ");
@@ -518,7 +522,7 @@ public class UtilAdmin {
         
         viewEmployees();
 
-        System.out.print("\nDo you want to update the status of employee (y/n or .. to go back)? ");
+        System.out.print("\nDo you want to update the status of employee (y/n or .. cancel)? ");
         String answer = Utility.inputHandleString().toLowerCase();
 
         if (answer.equals("..")) {
@@ -527,7 +531,12 @@ public class UtilAdmin {
 
 
         if (answer.equals("y")) {
-            int id = Utility.readInt("Enter the Id of the Employee: ");
+            int id = Utility.readInt("Enter the Id of the Employee (0 to cancel): ");
+
+            if (id == 0) {
+                return;
+            }
+
             boolean found = false;
 
             for (Employees employee : employees) {
@@ -538,6 +547,7 @@ public class UtilAdmin {
                     System.out.println("[1] Active");
                     System.out.println("[2] On Leave");
                     System.out.println("[3] Resigned");
+                    System.out.println("[4] Cancel");
                     System.out.print("Enter the updated status: ");
                     int currentStatus = Utility.inputHandlerInt();
 
@@ -552,6 +562,9 @@ public class UtilAdmin {
                         case 3:
                             newStatus = "Resigned";
                             break;
+                        case 4:
+                            System.out.println("Update cancelled.");
+                            return;
                         default:
                             System.out.println("Invalid Choice. Status not changed.");
                             return;
@@ -577,7 +590,7 @@ public class UtilAdmin {
         List<Admin> admins = AdminJsonHandler.loadAdmins();
         System.out.println("\n----------------- Create Another Profile -----------------");
 
-        String username = Utility.inputHandlerStr("Enter new Username (.. to go back): ");
+        String username = Utility.inputHandlerStr("Enter new Username (.. to cancel): ");
 
         if (username.equals("..")) {
             return;
@@ -613,7 +626,7 @@ public class UtilAdmin {
 
         List<Admin> admins = AdminJsonHandler.loadAdmins();
 
-        String oldPassword = Utility.inputHandlerStr("Enter your old password (.. to go back): ");
+        String oldPassword = Utility.inputHandlerStr("Enter your old password (.. to cancel): ");
 
         if (oldPassword.equals("..")) {
             return;
@@ -653,7 +666,7 @@ public class UtilAdmin {
 
         List<Admin> admins = AdminJsonHandler.loadAdmins();
 
-        String oldUsername = Utility.inputHandlerStr("Enter your old username (.. to go back): ");
+        String oldUsername = Utility.inputHandlerStr("Enter your old username (.. to cancel): ");
 
         if (oldUsername.equals("..")) {
             return;
@@ -705,7 +718,7 @@ public class UtilAdmin {
         }
         System.out.printf("+------+-------------------+--------------+---------------+%n");
 
-        String ans = Utility.inputHandlerStr("Change the worker password (y/n or .. to go back)?: ").toLowerCase();
+        String ans = Utility.inputHandlerStr("Change the worker password (y/n or .. to cancel)?: ").toLowerCase();
 
         if (ans.equals("..")) {
             return;
